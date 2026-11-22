@@ -175,4 +175,4 @@ cargo run --release -p potok-protocol --example hotpath 1000000
 | [`BUILD_LOG.md`](BUILD_LOG.md) | Протокол проверок, golden-байты, замеры hotpath |
 | [`PROTOCOL_BUDGET.md`](PROTOCOL_BUDGET.md), [`SPEC_PROTOCOL_LOWLAT.md`](SPEC_PROTOCOL_LOWLAT.md) | Бюджет/надёжность и спецификация lowlat (черновики) |
 
-Лицензия: MIT.
+Лицензия: GPL-3.0-or-later (или коммерческая).
