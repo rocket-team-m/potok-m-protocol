@@ -127,6 +127,10 @@ static void test_crc(void)
     static const uint8_t check[] = "123456789";
     CHECK(potok_crc16(check, 9u) == 0x29B1u);
     CHECK(potok_crc16(check, 0u) == 0xFFFFu);
+    /* Pin the generated table to the spec polynomial (0x1021, CCITT-FALSE). */
+    CHECK(POTOK_CRC16_TABLE[0] == 0x0000u);
+    CHECK(POTOK_CRC16_TABLE[1] == 0x1021u);
+    CHECK(POTOK_CRC16_TABLE[255] == 0x1EF0u);
 }
 
 static void test_encode(void)
