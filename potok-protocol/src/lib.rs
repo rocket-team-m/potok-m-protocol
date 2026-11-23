@@ -112,12 +112,12 @@ fn crc_pair(crc: u16, hi: u8, lo: u8) -> u16 {
 #[inline]
 pub fn crc16(data: &[u8]) -> u16 {
     let mut crc = CRC_INIT;
-    let mut chunks = data.chunks_exact(4);
-    for c in &mut chunks {
+    let (chunks, remainder) = data.as_chunks::<4>();
+    for c in chunks {
         crc = crc_pair(crc, c[0], c[1]);
         crc = crc_pair(crc, c[2], c[3]);
     }
-    for &b in chunks.remainder() {
+    for &b in remainder {
         crc = CRC_TABLE[((crc >> 8) ^ u16::from(b)) as usize] ^ (crc << 8);
     }
     crc ^ CRC_XOR_OUT

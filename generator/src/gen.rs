@@ -234,10 +234,22 @@ pub fn gen_rust(spec: &Spec) -> String {
         let width = type_size(&ty).unwrap();
         let method = if le(spec) { "le" } else { "be" };
         let puts = (0..width)
-            .map(|i| format!("buf[off + {i}] = b[{i}];"))
+            .map(|i| {
+                if i == 0 {
+                    "buf[off] = b[0];".to_owned()
+                } else {
+                    format!("buf[off + {i}] = b[{i}];")
+                }
+            })
             .collect::<String>();
         let gets = (0..width)
-            .map(|i| format!("buf[off + {i}]"))
+            .map(|i| {
+                if i == 0 {
+                    "buf[off]".to_owned()
+                } else {
+                    format!("buf[off + {i}]")
+                }
+            })
             .collect::<Vec<_>>()
             .join(", ");
         let _ = writeln!(s, "    #[inline(always)]");
