@@ -67,7 +67,7 @@
 
 **Фаза.** Перечисление `Phase` фиксировано и проверяется генератором: `BURN=0`, `COAST=1`, `APOGEE=2`, `DESCENT=3`, `LANDED=4`. Тест `phase_uses_documented_names_and_codes` отвергает старую схему `Idle=0…` и любую другую расстановку. Числовые коды не менялись, поэтому переименование было wire-нейтральным.
 
-**Флаги.** Один байт: `GPS_FIX 0`, `IMU_OK 1`, `BARO_OK 2`, `PITOT_OK 3`, `AI_READY 4`, `CALIBRATED 5`, `MOTOR_ARMED 6`, `FAULT 7`. Хелперы `flag_has` / `flag_set` / `flag_clear` работают без выделений.
+**Флаги.** Один байт: бит 0 зарезервирован (не назначен), `IMU_OK 1`, `BARO_OK 2`, `PITOT_OK 3`, `AI_READY 4`, `CALIBRATED 5`, `MOTOR_ARMED 6`, `FAULT 7`. Хелперы `flag_has` / `flag_set` / `flag_clear` работают без выделений.
 
 ---
 
